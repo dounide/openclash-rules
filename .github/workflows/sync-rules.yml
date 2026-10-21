@@ -1,0 +1,48 @@
+name: Sync client rules
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - openclash/module.conf
+      - tools/sync_rules.py
+      - .github/workflows/sync-rules.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-client-rules
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the current rule source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: main
+
+      - name: Generate client rules
+        run: python3 tools/sync_rules.py
+
+      - name: Verify generated files
+        run: |
+          python3 tools/sync_rules.py --check
+          node --check flclash/rules.js
+          node --check clash-party/override.js
+
+      - name: Publish updated rule blocks
+        run: |
+          git add -- shadowrocket/custom-rules.sgmodule flclash/rules.js clash-party/override.js
+          if git diff --cached --quiet; then
+            echo "All client rule blocks are already in sync."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sync client rules from OpenClash source"
+          git push origin HEAD:main
