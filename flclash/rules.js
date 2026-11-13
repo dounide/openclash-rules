@@ -7,8 +7,8 @@ const PROXY_GROUP = "🚀 默认代理";
 // 此数组由 openclash/module.conf 自动生成，请在源文件中增删规则。
 const CUSTOM_RULES = [
   // BEGIN GENERATED RULES
-  // `DOMAIN-SUFFIX,agentrouter.org,${AUTO_GROUP}`,
-  `DOMAIN-SUFFIX,agentrouter.org,${PROXY_GROUP}`,
+  `DOMAIN-SUFFIX,agentrouter.org,${AUTO_GROUP}`,
+  // `DOMAIN-SUFFIX,agentrouter.org,${PROXY_GROUP}`,
   `DOMAIN-SUFFIX,51cg.fun,${PROXY_GROUP}`,
   `DOMAIN-SUFFIX,cg51.com,${PROXY_GROUP}`,
   `DOMAIN-SUFFIX,missav.ai,${PROXY_GROUP}`,

@@ -8,8 +8,8 @@
 
 [Rule]
 # BEGIN GENERATED RULES
-# DOMAIN-SUFFIX,agentrouter.org,{{{AUTO_GROUP}}}
-DOMAIN-SUFFIX,agentrouter.org,{{{PROXY_GROUP}}}
+DOMAIN-SUFFIX,agentrouter.org,{{{AUTO_GROUP}}}
+# DOMAIN-SUFFIX,agentrouter.org,{{{PROXY_GROUP}}}
 DOMAIN-SUFFIX,51cg.fun,{{{PROXY_GROUP}}}
 DOMAIN-SUFFIX,cg51.com,{{{PROXY_GROUP}}}
 DOMAIN-SUFFIX,missav.ai,{{{PROXY_GROUP}}}
